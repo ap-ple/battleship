@@ -1,6 +1,6 @@
 import Ship from "../src/modules/Ship";
 
-test("creates a ship with length 5 and sinks it", () => {
+test("Ship of length 5 should sink only after 5 hits", () => {
    const ship = new Ship(5);
 
    ship.hit();
