@@ -1,0 +1,24 @@
+html {
+   --theme-background: rgb(70, 70, 70);
+   --theme-text: white;
+}
+
+* {
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+   box-sizing: border-box;
+   color: var(--theme-text);
+}
+
+:not(dialog) {
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   height: 100vh;
+   display: flex;
+   flex-flow: column;
+   justify-content: center;
+   align-items: center;
+   background: var(--theme-background);
+}
