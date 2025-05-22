@@ -15,6 +15,41 @@ test("Gameboard should allow placing of ships", () => {
    expect(gameboard.hasShipAt(ship.x, ship.y)).toEqual(true);
 })
 
+test("Gameboard shouldn't allow placing of ships outside of board", () => {
+   const gameboard = new Gameboard();
+
+   const ship = {
+      x: 1,
+      y: 2,
+      name: "Carrier"
+   }
+
+   expect(() => {
+      gameboard.placeShipAt(ship.x, ship.y, ship.name, "left")
+   }).toThrow("Invalid placement");
+})
+
+test("Gameboard shouldn't allow accessing coordinates outside of board", () => {
+   const gameboard = new Gameboard();
+
+   const coordinates = {
+      x: -1,
+      y: -1
+   }
+
+   expect(() => {
+      gameboard.getShipAt(coordinates.x, coordinates.y)
+   }).toThrow("Invalid coordinates");
+
+   expect(() => {
+      gameboard.hasShipAt(coordinates.x, coordinates.y)
+   }).toThrow("Invalid coordinates");
+
+   expect(() => {
+      gameboard.recieveAttack(coordinates.x, coordinates.y)
+   }).toThrow("Invalid coordinates");
+})
+
 test("Gameboard should allow sinking of ships", () => {
    const gameboard = new Gameboard();
 
