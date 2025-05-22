@@ -1,0 +1,133 @@
+import Gameboard from "../src/modules/Gameboard";
+import shipLengths from "../src/modules/shipLengths";
+
+test("Gameboard should allow placing of ships", () => {
+   const gameboard = new Gameboard();
+
+   const ship = {
+      x: 1,
+      y: 2,
+      name: "Destroyer"
+   }
+
+   gameboard.placeShipAt(ship.x, ship.y, ship.name, "right");
+
+   expect(gameboard.hasShipAt(ship.x, ship.y)).toEqual(true);
+})
+
+test("Gameboard should allow sinking of ships", () => {
+   const gameboard = new Gameboard();
+
+   const ship = {
+      x: 1,
+      y: 2,
+      name: "Destroyer"
+   }
+
+   gameboard.placeShipAt(ship.x, ship.y, ship.name, "right");
+
+   const shipObject = gameboard.getShipAt(ship.x, ship.y);
+
+   expect(shipObject.isSunk()).toEqual(false);
+
+   for (let i = 0; i < shipObject.length; i++) {
+      gameboard.recieveAttack(ship.x + i, ship.y);
+   }
+
+   expect(shipObject.isSunk()).toEqual(true);
+})
+
+test("Gameboard should know where missed attacks are", () => {
+   const gameboard = new Gameboard();
+
+   const ship = {
+      x: 1,
+      y: 2,
+      name: "Destroyer"
+   }
+
+   gameboard.placeShipAt(ship.x, ship.y, ship.name, "right");
+
+   const attack = {
+      x: ship.x,
+      y: ship.y + 1
+   }
+
+   gameboard.recieveAttack(attack.x, attack.y);
+
+   expect(gameboard.missedAttacks.at(0)).toEqual(attack);
+})
+
+test("Gameboard should know where hit attacks are", () => {
+   const gameboard = new Gameboard();
+
+   const ship = {
+      x: 1,
+      y: 2,
+      name: "destroyer"
+   }
+
+   gameboard.placeShipAt(ship.x, ship.y, ship.name, "right");
+
+   const attack = {
+      x: ship.x,
+      y: ship.y
+   }
+
+   gameboard.recieveAttack(attack.x, attack.y);
+
+   expect(gameboard.hitAttacks.at(0)).toEqual(attack);
+})
+
+test("Gameboard should know which ships are placed and which aren't", () => {
+   const gameboard = new Gameboard();
+
+   const ships = {
+      placed: new Set(["Cruiser", "Destroyer"]),
+      unplaced: new Set(["Carrier", "Battleship", "Submarine"])
+   }
+
+   let y = 0;
+
+   for (const shipName of ships.placed) {
+      gameboard.placeShipAt(0, y, shipName, "right");
+
+      y++;
+   }
+
+   expect(gameboard.ships).toEqual(ships);
+})
+
+test("Gameboard should know when all ships are placed", () => {
+   const gameboard = new Gameboard();
+
+   let y = 0;
+
+   for (const shipName in shipLengths) {
+      gameboard.placeShipAt(0, y, shipName, "right");
+
+      y++;
+   }
+
+   expect(gameboard.hasAllShips()).toEqual(true);
+})
+
+test("Gameboard should know when all ships are sunk", () => {
+   const gameboard = new Gameboard();
+
+   let y = 0;
+
+   for (const shipName in shipLengths) {
+      gameboard.placeShipAt(0, y, shipName, "right");
+
+      const ship = gameboard.getShipAt(0, y);
+
+      for (let x = 0; x < ship.length; x++) {
+         gameboard.recieveAttack(x, y);
+      }
+
+      y++;
+   }
+
+   expect(gameboard.hasOnlySunkShips()).toEqual(true);
+})
