@@ -79,23 +79,21 @@ test("Gameboard should know where hit attacks are", () => {
    expect(gameboard.hitAttacks.at(0)).toEqual(attack);
 })
 
-test("Gameboard should know which ships are placed and which aren't", () => {
+test("Gameboard should know which ships aren't placed", () => {
    const gameboard = new Gameboard();
 
-   const ships = {
-      placed: new Set(["Cruiser", "Destroyer"]),
-      unplaced: new Set(["Carrier", "Battleship", "Submarine"])
-   }
+   const placed = ["Cruiser", "Destroyer"];
+   const unplaced  = new Set(["Carrier", "Battleship", "Submarine"]);
 
    let y = 0;
 
-   for (const shipName of ships.placed) {
+   for (const shipName of placed) {
       gameboard.placeShipAt(0, y, shipName, "right");
 
       y++;
    }
 
-   expect(gameboard.ships).toEqual(ships);
+   expect(gameboard.unplaced).toEqual(unplaced);
 })
 
 test("Gameboard should know when all ships are placed", () => {
