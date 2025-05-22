@@ -10,15 +10,15 @@ export default class Gameboard {
       }
    }
 
-   placeShipAt() {
+   placeShipAt(x, y, shipName, orientation) {
 
    }
 
-   getShipAt() {
+   getShipAt(x, y) {
 
    }
 
-   hasShipAt() {
+   hasShipAt(x, y) {
 
    }
 
@@ -27,10 +27,10 @@ export default class Gameboard {
    }
 
    hasOnlySunkShips() {
-      
+
    }
 
-   recieveAttack() {
+   recieveAttack(x, y) {
    
    }
 }
