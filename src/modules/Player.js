@@ -21,6 +21,6 @@ export default class Player {
    }
 
    sendAttack(x, y) {
-      
+      this.gameboards.target.recieveAttack(x, y);
    }
 }
