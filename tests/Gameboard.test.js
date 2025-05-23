@@ -59,6 +59,20 @@ test("Gameboard shouldn't allow placing overlapping ships", () => {
    }).toThrow("Invalid placement");
 })
 
+test("Gameboard shouldn't allow placing unknown ships", () => {
+   const gameboard = new Gameboard();
+
+   const ship = {
+      x: 1,
+      y: 2,
+      name: "Titanic"
+   }
+
+   expect(() => {
+      gameboard.placeShipAt(ship.x, ship.y, ship.name, "right")
+   }).toThrow("Invalid ship name");
+})
+
 test("Gameboard should know if a spot is empty", () => {
    const gameboard = new Gameboard();
 
