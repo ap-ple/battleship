@@ -1,5 +1,5 @@
 import Ship from "./Ship";
-import shipLengths from "./shipLengths";
+import ships from "./ships";
 
 export default class Gameboard {
    static size = 10;
@@ -21,7 +21,7 @@ export default class Gameboard {
    constructor() {
       this.board = this.constructor.constructBoard();
 
-      this.unplaced = new Set(Object.keys(shipLengths));
+      this.unplaced = new Set(ships);
       
       this.ships = []
       this.attacks = {
@@ -31,11 +31,7 @@ export default class Gameboard {
    }
 
    placeShipAt(x, y, shipName, orientation) {
-      const shipLength = shipLengths[shipName];
-
-      if (shipLength === undefined) {
-         throw new Error("Invalid ship name");
-      }
+      const ship = new Ship(shipName);
 
       if (!this.unplaced.has(shipName)) {
          throw new Error("Ship already placed");
@@ -59,20 +55,18 @@ export default class Gameboard {
          break;
       }
 
-      const endX = x + (shipLength - 1) * deltaX;
-      const endY = y + (shipLength - 1) * deltaY;
+      const endX = x + (ship.length - 1) * deltaX;
+      const endY = y + (ship.length - 1) * deltaY;
 
       if (!this.constructor.areValidCoordinates(x, y, endX, endY)) {
          throw new Error("Invalid placement");
       }
 
-      for (let delta = 0; delta < shipLength; delta++) {
+      for (let delta = 0; delta < ship.length; delta++) {
          if (this.board[x + delta * deltaX][y + delta * deltaY] !== undefined) {
             throw new Error("Invalid placement");
          }
       }
-
-      const ship = new Ship(shipName, shipLength);
       
       this.ships.push(ship);
       

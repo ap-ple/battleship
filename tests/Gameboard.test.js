@@ -1,5 +1,5 @@
 import Gameboard from "../src/modules/Gameboard";
-import shipLengths from "../src/modules/shipLengths";
+import ships from "../src/modules/ships";
 
 test("Gameboard should allow placing of ships", () => {
    const gameboard = new Gameboard();
@@ -59,20 +59,6 @@ test("Gameboard shouldn't allow placing overlapping ships", () => {
    expect(() => {
       gameboard.placeShipAt(ship.x + 1, ship.y, "Destroyer", "right")
    }).toThrow("Invalid placement");
-})
-
-test("Gameboard shouldn't allow placing unknown ships", () => {
-   const gameboard = new Gameboard();
-
-   const ship = {
-      x: 1,
-      y: 2,
-      name: "Titanic"
-   }
-
-   expect(() => {
-      gameboard.placeShipAt(ship.x, ship.y, ship.name, "right")
-   }).toThrow("Invalid ship name");
 })
 
 test("Gameboard should know if a spot is empty", () => {
@@ -210,7 +196,7 @@ test("Gameboard should know when all ships are placed", () => {
 
    let y = 0;
 
-   for (const shipName in shipLengths) {
+   for (const shipName of ships) {
       gameboard.placeShipAt(0, y, shipName, "right");
 
       y++;
@@ -224,7 +210,7 @@ test("Gameboard should know when all ships are sunk", () => {
 
    let y = 0;
 
-   for (const shipName in shipLengths) {
+   for (const shipName of ships) {
       gameboard.placeShipAt(0, y, shipName, "right");
 
       const ship = gameboard.getShipAt(0, y);

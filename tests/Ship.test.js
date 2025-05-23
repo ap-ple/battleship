@@ -1,19 +1,24 @@
 import Ship from "../src/modules/Ship";
-import shipLengths from "../src/modules/shipLengths";
+import ships from "../src/modules/ships";
 
 test("Ships should only sink after being hit as many times as their length", () => {
-   const shipName = "Carrier";
-   const shipLength = shipLengths[shipName];
+   for (const shipName of ships) {
+      const ship = new Ship(shipName);
 
-   const ship = new Ship(shipName, shipLength);
+      expect(ship.hits).toEqual(0)
+      expect(ship.isSunk()).toEqual(false)
 
-   expect(ship.hits).toEqual(0)
-   expect(ship.isSunk()).toEqual(false)
+      for (let hit = 0; hit < ship.length; hit++) {
+         ship.hit();
+      }
 
-   for (let hit = 0; hit < shipLength; hit++) {
-      ship.hit();
+      expect(ship.hits).toEqual(ship.length)
+      expect(ship.isSunk()).toEqual(true)
    }
-
-   expect(ship.hits).toEqual(shipLength)
-   expect(ship.isSunk()).toEqual(true)
 });
+
+test("Ship shouldn't allow invalid names", () => {
+   expect(() => {
+      new Ship("Titanic")
+   }).toThrow("Invalid ship name")
+})
