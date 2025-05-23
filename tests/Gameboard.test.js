@@ -127,6 +127,21 @@ test("Gameboard should know where hit attacks are", () => {
    expect(gameboard.hitAttacks.at(0)).toEqual(attack);
 })
 
+test("Gameboard shouldn't allow attacks on already attacked squares", () => {
+   const gameboard = new Gameboard();
+
+   const attack = {
+      x: 1,
+      y: 2
+   }
+
+   gameboard.recieveAttack(attack.x, attack.y);
+
+   expect(() => {
+      gameboard.recieveAttack(attack.x, attack.y)
+   }).toThrow("Square already attacked");
+})
+
 test("Gameboard should know which ships aren't placed", () => {
    const gameboard = new Gameboard();
 
