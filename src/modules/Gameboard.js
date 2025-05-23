@@ -4,16 +4,22 @@ import shipLengths from "./shipLengths";
 export default class Gameboard {
    static size = 10;
 
+   static constructBoard() {
+      const board = new Array(this.size);
+
+      for (let column = 0; column < this.size; column++) {
+         board[column] = new Array(this.size);
+      }
+
+      return board;
+   }
+
    static areValidCoordinates(...coordinates) {
       return coordinates.every((coordinate) => coordinate >= 0 && coordinate < this.size);
    }
 
    constructor() {
-      this.board = new Array(this.constructor.size);
-
-      for (let column = 0; column < this.constructor.size; column++) {
-         this.board[column] = new Array(this.size);
-      }
+      this.board = this.constructor.constructBoard();
 
       this.ships = []
       this.missedAttacks = [];
