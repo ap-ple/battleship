@@ -85,6 +85,16 @@ export default class Gameboard {
    }
 
    recieveAttack(x, y) {
-   
+      const ship = this.getShipAt(x, y);
+      
+      if (this.hasShipAt(x, y)) {
+         this.hitAttacks.push({x, y});
+         ship.hit();
+      }
+      else {
+         this.missedAttacks.push({x, y});
+      }
+
+      return ship;
    }
 }
