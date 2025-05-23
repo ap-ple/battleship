@@ -24,6 +24,10 @@ export default class Gameboard {
    placeShipAt(x, y, shipName, orientation) {
       const shipLength = shipLengths[shipName];
 
+      if (shipLength === undefined) {
+         throw new Error("Invalid ship name");
+      }
+
       let deltaX = 0;
       let deltaY = 0;
 
