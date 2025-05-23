@@ -1,18 +1,19 @@
 import Ship from "../src/modules/Ship";
+import shipLengths from "../src/modules/shipLengths";
 
-test("Ship of length 5 should sink only after 5 hits", () => {
-   const ship = new Ship(5);
+test("Ships should only sink after being hit as many times as their length", () => {
+   const shipName = "Carrier";
+   const shipLength = shipLengths[shipName];
 
-   ship.hit();
+   const ship = new Ship(shipName, shipLength);
 
-   expect(ship.hits).toEqual(1)
+   expect(ship.hits).toEqual(0)
    expect(ship.isSunk()).toEqual(false)
-   
-   ship.hit();
-   ship.hit();
-   ship.hit();
-   ship.hit();
 
-   expect(ship.hits).toEqual(5)
+   for (let hit = 0; hit < shipLength; hit++) {
+      ship.hit();
+   }
+
+   expect(ship.hits).toEqual(shipLength)
    expect(ship.isSunk()).toEqual(true)
 });

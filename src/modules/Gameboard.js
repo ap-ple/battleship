@@ -53,7 +53,7 @@ export default class Gameboard {
          throw new Error("Invalid placement");
       }
 
-      const ship = new Ship(shipLength);
+      const ship = new Ship(shipName, shipLength);
       
       this.ships.push(ship);
       
