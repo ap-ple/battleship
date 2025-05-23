@@ -54,6 +54,8 @@ test("Gameboard shouldn't allow placing overlapping ships", () => {
       name: "Carrier"
    }
 
+   gameboard.placeShipAt(ship.x + 1, ship.y, ship.name, "right")
+
    expect(() => {
       gameboard.placeShipAt(ship.x + 1, ship.y, "Destroyer", "right")
    }).toThrow("Invalid placement");
