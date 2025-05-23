@@ -8,7 +8,15 @@ export default class Player {
       };
    }
 
-   recieveAttack() {
-      
+   placeShipAt(x, y, shipName, orientation) {
+      this.gameboards.ocean.placeShipAt(x, y, shipName, orientation);
+   }
+
+   recieveAttack(x, y) {
+      const hitShip = this.gameboards.ocean.recieveAttack(x, y);
+
+      return hitShip === null
+         ? "Miss."
+         : `Hit. ${hitShip.name}.`;
    }
 }
