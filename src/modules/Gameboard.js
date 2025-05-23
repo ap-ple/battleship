@@ -37,6 +37,10 @@ export default class Gameboard {
          throw new Error("Invalid ship name");
       }
 
+      if (!this.unplaced.has(shipName)) {
+         throw new Error("Ship already placed");
+      }
+
       let deltaX = 0;
       let deltaY = 0;
 
@@ -60,6 +64,12 @@ export default class Gameboard {
 
       if (!this.constructor.areValidCoordinates(x, y, endX, endY)) {
          throw new Error("Invalid placement");
+      }
+
+      for (let delta = 0; delta < shipLength; delta++) {
+         if (this.board[x + delta * deltaX][y + delta * deltaY] !== undefined) {
+            throw new Error("Invalid placement");
+         }
       }
 
       const ship = new Ship(shipName, shipLength);
