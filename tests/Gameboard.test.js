@@ -29,6 +29,36 @@ test("Gameboard shouldn't allow placing of ships outside of board", () => {
    }).toThrow("Invalid placement");
 })
 
+test("Gameboard shouldn't allow placing the same ship twice", () => {
+   const gameboard = new Gameboard();
+
+   const ship = {
+      x: 1,
+      y: 2,
+      name: "Destroyer"
+   }
+
+   gameboard.placeShipAt(ship.x, ship.y, ship.name, "right")
+
+   expect(() => {
+      gameboard.placeShipAt(ship.x, ship.y + 1, ship.name, "right")
+   }).toThrow("Ship already placed");
+})
+
+test("Gameboard shouldn't allow placing overlapping ships", () => {
+   const gameboard = new Gameboard();
+
+   const ship = {
+      x: 1,
+      y: 2,
+      name: "Carrier"
+   }
+
+   expect(() => {
+      gameboard.placeShipAt(ship.x + 1, ship.y, "Destroyer", "right")
+   }).toThrow("Invalid placement");
+})
+
 test("Gameboard should know if a spot is empty", () => {
    const gameboard = new Gameboard();
 
