@@ -77,11 +77,11 @@ export default class Gameboard {
    }
 
    hasAllShips() {
-
+      return this.unplaced.size === 0;
    }
 
    hasOnlySunkShips() {
-
+      return this.ships.every((ship) => ship.isSunk());
    }
 
    recieveAttack(x, y) {
