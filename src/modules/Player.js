@@ -19,4 +19,8 @@ export default class Player {
          ? "Miss."
          : `Hit. ${hitShip.name}.`;
    }
+
+   sendAttack(x, y) {
+      
+   }
 }
