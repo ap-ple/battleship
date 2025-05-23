@@ -17,7 +17,7 @@ test("Players should report hits and misses", () => {
       name: "Destroyer"
    }
 
-   player.gameboard.placeShipAt(ship.x, ship.y, ship.name, "right");
+   player.placeShipAt(ship.x, ship.y, ship.name, "right");
 
    expect(player.recieveAttack(ship.x, ship.y)).toEqual(`Hit. ${ship.name}.`);
 
