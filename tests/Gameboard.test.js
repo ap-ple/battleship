@@ -103,7 +103,7 @@ test("Gameboard should know where missed attacks are", () => {
 
    gameboard.recieveAttack(attack.x, attack.y);
 
-   expect(gameboard.missedAttacks.at(0)).toEqual(attack);
+   expect(gameboard.attacks.missed.at(0)).toEqual(attack);
 })
 
 test("Gameboard should know where hit attacks are", () => {
@@ -124,7 +124,7 @@ test("Gameboard should know where hit attacks are", () => {
 
    gameboard.recieveAttack(attack.x, attack.y);
 
-   expect(gameboard.hitAttacks.at(0)).toEqual(attack);
+   expect(gameboard.attacks.hit.at(0)).toEqual(attack);
 })
 
 test("Gameboard shouldn't allow attacks on already attacked squares", () => {

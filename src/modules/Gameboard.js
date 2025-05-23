@@ -21,10 +21,13 @@ export default class Gameboard {
    constructor() {
       this.board = this.constructor.constructBoard();
 
-      this.ships = []
-      this.missedAttacks = [];
-      this.hitAttacks = [];
       this.unplaced = new Set(Object.keys(shipLengths));
+      
+      this.ships = []
+      this.attacks = {
+         hit: [],
+         missed: []
+      }
    }
 
    placeShipAt(x, y, shipName, orientation) {
@@ -90,15 +93,29 @@ export default class Gameboard {
       return this.ships.every((ship) => ship.isSunk());
    }
 
+   wasAttackedAt(x, y) {
+      const attackArrays = Object.values(this.attacks);
+
+      return attackArrays.some(
+         (array) => array.some(
+            (attack) => attack.x === x && attack.y === y
+         )
+      );
+   }
+
    recieveAttack(x, y) {
+      if (this.wasAttackedAt(x, y)) {
+         throw new Error("Square already attacked");
+      }
+
       const ship = this.getShipAt(x, y);
-      
+
       if (this.hasShipAt(x, y)) {
-         this.hitAttacks.push({x, y});
+         this.attacks.hit.push({x, y});
          ship.hit();
       }
       else {
-         this.missedAttacks.push({x, y});
+         this.attacks.missed.push({x, y});
       }
 
       return ship;
