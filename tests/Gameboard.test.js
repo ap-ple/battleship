@@ -112,7 +112,7 @@ test("Gameboard should know where hit attacks are", () => {
    const ship = {
       x: 1,
       y: 2,
-      name: "destroyer"
+      name: "Destroyer"
    }
 
    gameboard.placeShipAt(ship.x, ship.y, ship.name, "right");
