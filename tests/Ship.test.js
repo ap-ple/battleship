@@ -17,7 +17,7 @@ test("Ships should only sink after being hit as many times as their length", () 
    }
 });
 
-test("Ship shouldn't allow invalid names", () => {
+test("Ship constructor shouldn't allow invalid names", () => {
    expect(() => {
       new Ship("Titanic")
    }).toThrow("Invalid ship name")
