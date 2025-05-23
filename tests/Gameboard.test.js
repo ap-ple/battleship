@@ -29,6 +29,19 @@ test("Gameboard shouldn't allow placing of ships outside of board", () => {
    }).toThrow("Invalid placement");
 })
 
+test("Gameboard should know if a spot is empty", () => {
+   const gameboard = new Gameboard();
+
+   const coordinates = {
+      x: 1,
+      y: 2
+   }
+
+   expect(gameboard.getShipAt(coordinates.x, coordinates.y)).toEqual(null);
+
+   expect(gameboard.hasShipAt(coordinates.x, coordinates.y)).toEqual(false);
+})
+
 test("Gameboard shouldn't allow accessing coordinates outside of board", () => {
    const gameboard = new Gameboard();
 
