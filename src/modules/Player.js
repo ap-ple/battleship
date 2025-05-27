@@ -22,7 +22,7 @@ export default class Player {
          : `Hit. ${hitShip.name}.`;
    }
 
-   sendAttack(x, y) {
+   attack(x, y) {
       this.gameboards.target.recieveAttack(x, y);
    }
 

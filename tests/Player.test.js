@@ -24,9 +24,9 @@ test("Players shouldn't send the same attack twice", () => {
       y: 2
    }
 
-   player.sendAttack(attack.x, attack.y);
+   player.attack(attack.x, attack.y);
 
    expect(() => {
-      player.sendAttack(attack.x, attack.y)
+      player.attack(attack.x, attack.y)
    }).toThrow("Square already attacked");
 })
