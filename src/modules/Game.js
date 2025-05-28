@@ -14,14 +14,18 @@ export default class Game {
 
       this.turn = 1;
 
+      this.players = {
+         attacking: null,
+         defending: null,
+         winning: null
+      }
+
       this.updatePlayers();
    }
 
    updatePlayers() {
-      this.players = {
-         attacking: this.playerList.at((this.turn - 1) % this.playerList.length),
-         defending: this.playerList.at(this.turn % this.playerList.length)
-      }
+      this.players.attacking = this.playerList.at((this.turn - 1) % this.playerList.length);
+      this.players.defending = this.playerList.at(this.turn % this.playerList.length);
    }
 
    attack(x, y) {
@@ -32,10 +36,18 @@ export default class Game {
       this.turn++;
       this.updatePlayers();
 
+      if (this.isOver()) {
+         this.players.winning = this.playerList.find((player) => !player.hasLost());
+      }
+
       return message;
    }
 
    isReady() {
       return this.playerList.every((player) => player.placedAllShips());
+   }
+
+   isOver() {
+      return this.playerList.some((player) => player.hasLost());
    }
 }
