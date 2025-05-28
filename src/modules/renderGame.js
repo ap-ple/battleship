@@ -1,6 +1,6 @@
 const boards = document.querySelector("#boards");
 
-const renderBoard = (player, callback) => {
+const renderedBoard = (player, callback) => {
    const board = document.createElement("div");
 
    board.className = "board";
@@ -61,11 +61,11 @@ const renderBoard = (player, callback) => {
 const renderGame = (game) => {
    boards.innerHTML = "";
 
-   boards.appendChild(renderBoard(
+   boards.appendChild(renderedBoard(
       game.players.attacking
    ));
 
-   boards.appendChild(renderBoard(
+   boards.appendChild(renderedBoard(
       game.players.defending, (x, y) => {
          game.recieveAttack(x, y);
          renderGame(game);
