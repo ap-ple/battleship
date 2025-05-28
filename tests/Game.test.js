@@ -21,7 +21,7 @@ test("Game should know when it is ready to play", () => {
    let y = 0;
    
    for (const shipName of ships) {
-      for (const player of Object.values(game.players)) {
+      for (const player of game.playerList) {
          player.placeShipAt(0, y, shipName, "right");
       }
 

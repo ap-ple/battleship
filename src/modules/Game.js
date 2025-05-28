@@ -6,10 +6,10 @@ export default class Game {
          playerNames.length = 2;
       }
 
-      this._players = [];
+      this.playerList = [];
 
       for (const playerName of playerNames) {
-         this._players.push(new Player(playerName));
+         this.playerList.push(new Player(playerName));
       }
 
       this.turn = 1;
@@ -19,8 +19,8 @@ export default class Game {
 
    updatePlayers() {
       this.players = {
-         attacking: this._players.at((this.turn - 1) % this._players.length),
-         defending: this._players.at(this.turn % this._players.length)
+         attacking: this.playerList.at((this.turn - 1) % this.playerList.length),
+         defending: this.playerList.at(this.turn % this.playerList.length)
       }
    }
 
@@ -33,6 +33,6 @@ export default class Game {
    }
 
    isReady() {
-      return this._players.every((player) => player.placedAllShips());
+      return this.playerList.every((player) => player.placedAllShips());
    }
 }
