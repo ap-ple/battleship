@@ -26,10 +26,13 @@ export default class Game {
 
    attack(x, y) {
       this.players.attacking.attack(x, y);
-      this.players.defending.recieveAttack(x, y);
+
+      const message = this.players.defending.recieveAttack(x, y);
 
       this.turn++;
       this.updatePlayers();
+
+      return message;
    }
 
    isReady() {
