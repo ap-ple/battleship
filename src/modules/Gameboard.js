@@ -1,5 +1,5 @@
-import Ship from "./Ship";
-import ships from "./ships";
+import Ship from "./Ship.js";
+import ships from "./ships.js";
 
 export default class Gameboard {
    static size = 10;
