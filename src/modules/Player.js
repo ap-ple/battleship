@@ -33,4 +33,8 @@ export default class Player {
    placedAllShips() {
       return this.gameboards.ocean.hasAllShips();
    }
+
+   hasLost() {
+      return this.placedAllShips() && this.gameboards.ocean.hasOnlySunkShips();
+   }
 }
