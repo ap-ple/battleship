@@ -49,34 +49,35 @@ button {
 }
 
 .board .space {
+   display: flex;
+   align-items: center;
+   justify-content: center;
    border: 0.5px solid gray;
    width: 24px;
    aspect-ratio: 1;
 }
 
-.board .space.ship {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
-
-.board .space.ship::before {
-   background: white;
+.board .space::before {
    width: 12px;
    aspect-ratio: 1;
    border-radius: 100%;
-   content: "";
 }
 
-.board .space.ship.sunk::before {
+.board .space.ship {
+   background: white;
+}
+
+.board .space.ship.sunk {
    background: black;
 }
 
-.board .space.hit {
-   background: lightcoral;
+.board .space.hit::before {
+   content: "";
+   background: rgb(255, 60, 60);
 }
 
-.board button.space.miss {
+.board button.space.miss::before {
+   content: "";
    background: white;
 }
 
@@ -84,6 +85,6 @@ button {
    border-color: var(--theme-text);
 }
 
-.board button:hover {
-   background: rgba(0, 0, 0, 0.2);
+.board button:not(:disabled):is(:hover, :focus-visible) {
+   background: rgba(0, 0, 0, 0.2);  
 }
