@@ -58,7 +58,7 @@ const renderBoard = (player, callback) => {
    return board;
 }
 
-export default (game) => {
+const renderGame = (game) => {
    boards.innerHTML = "";
 
    boards.appendChild(renderBoard(
@@ -66,6 +66,11 @@ export default (game) => {
    ));
 
    boards.appendChild(renderBoard(
-      game.players.defending, (x, y) => game.recieveAttack(x, y)
+      game.players.defending, (x, y) => {
+         game.recieveAttack(x, y);
+         renderGame(game);
+      }
    ));
 }
+
+export default renderGame;
