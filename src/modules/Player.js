@@ -8,33 +8,26 @@ export default class Player {
 
       this.name = name ?? `Player ${this.constructor.count}}`;
 
-      this.gameboards = {
-         ocean: new Gameboard(),
-         target: new Gameboard()
-      };
+      this.gameboard = new Gameboard();
    }
 
    placeShipAt(x, y, shipName, orientation) {
-      this.gameboards.ocean.placeShipAt(x, y, shipName, orientation);
+      this.gameboard.placeShipAt(x, y, shipName, orientation);
    }
 
    recieveAttack(x, y) {
-      const hitShip = this.gameboards.ocean.recieveAttack(x, y);
+      const hitShip = this.gameboard.recieveAttack(x, y);
 
       return hitShip === null
          ? "Miss."
          : `Hit. ${hitShip.name}.`;
    }
-
-   attack(x, y) {
-      this.gameboards.target.recieveAttack(x, y);
-   }
-
+   
    placedAllShips() {
-      return this.gameboards.ocean.hasAllShips();
+      return this.gameboard.hasAllShips();
    }
 
    hasLost() {
-      return this.placedAllShips() && this.gameboards.ocean.hasOnlySunkShips();
+      return this.placedAllShips() && this.gameboard.hasOnlySunkShips();
    }
 }

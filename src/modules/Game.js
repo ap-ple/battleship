@@ -28,9 +28,7 @@ export default class Game {
       this.players.defending = this.playerList.at(this.turn % this.playerList.length);
    }
 
-   attack(x, y) {
-      this.players.attacking.attack(x, y);
-
+   recieveAttack(x, y) {
       const message = this.players.defending.recieveAttack(x, y);
 
       this.turn++;

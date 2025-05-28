@@ -7,7 +7,7 @@ test("Game should switch players after attack is successfully sent", () => {
    expect(game.players.attacking.name).toEqual("Player");
    expect(game.players.defending.name).toEqual("Computer");
 
-   game.attack(1, 2);
+   game.recieveAttack(1, 2);
 
    expect(game.players.attacking.name).toEqual("Computer");
    expect(game.players.defending.name).toEqual("Player");

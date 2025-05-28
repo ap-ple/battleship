@@ -16,7 +16,7 @@ test("Players should report hits and misses", () => {
    expect(player.recieveAttack(ship.x, ship.y + 1)).toEqual("Miss.");
 })
 
-test("Players shouldn't send the same attack twice", () => {
+test("Players shouldn't recieve the same attack twice", () => {
    const player = new Player();
 
    const attack = {
@@ -24,9 +24,9 @@ test("Players shouldn't send the same attack twice", () => {
       y: 2
    }
 
-   player.attack(attack.x, attack.y);
+   player.recieveAttack(attack.x, attack.y);
 
    expect(() => {
-      player.attack(attack.x, attack.y)
+      player.recieveAttack(attack.x, attack.y)
    }).toThrow("Square already attacked");
 })
