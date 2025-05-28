@@ -20,5 +20,70 @@ body {
    flex-flow: column;
    justify-content: center;
    align-items: center;
+   gap: 36px;
    background: var(--theme-background);
+}
+
+button {
+   cursor: pointer;
+   background: none;
+}
+
+:disabled {
+   cursor: not-allowed;
+}
+
+#boards {
+   display: flex;
+   gap: 36px;
+}
+
+.board {
+   display: flex;
+   border: 0.5px solid var(--theme-text);
+}
+
+.board > div {
+   display: flex;
+   flex-flow: column;
+}
+
+.board .space {
+   border: 0.5px solid gray;
+   width: 24px;
+   aspect-ratio: 1;
+}
+
+.board .space.ship {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.board .space.ship::before {
+   background: white;
+   width: 12px;
+   aspect-ratio: 1;
+   border-radius: 100%;
+   content: "";
+}
+
+.board .space.ship.sunk::before {
+   background: black;
+}
+
+.board .space.hit {
+   background: lightcoral;
+}
+
+.board .space.miss {
+   background: white;
+}
+
+.board button.space {
+   border-color: var(--theme-text);
+}
+
+.board button:hover {
+   background: rgba(0, 0, 0, 0.2);
 }
