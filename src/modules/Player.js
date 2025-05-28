@@ -1,8 +1,12 @@
-import Gameboard from "./Gameboard";
+import Gameboard from "./Gameboard.js";
 
 export default class Player {
+   static count = 0;
+
    constructor(name) {
-      this.name = name;
+      this.constructor.count++;
+
+      this.name = name ?? `Player ${this.constructor.count}}`;
 
       this.gameboards = {
          ocean: new Gameboard(),
