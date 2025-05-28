@@ -7,7 +7,7 @@ const shipLengths = {
 }
 
 export default class Ship {
-   constructor(name, length) {
+   constructor(name) {
       this.hits = 0;
       this.name = name
       this.length = shipLengths[name];
