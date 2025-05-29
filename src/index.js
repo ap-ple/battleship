@@ -28,6 +28,16 @@ const playTurn = (x, y) => {
    if (game.isOver()) {
       renderGame(game)
    }
+   else if (game.players.attacking.name === COMPUTER) {
+      const boardSize = game.players.defending.gameboard.constructor.size;
+
+      do {
+         x = Math.floor(Math.random() * boardSize);
+         y = Math.floor(Math.random() * boardSize);
+      } while (game.players.defending.gameboard.wasAttackedAt(x, y));
+
+      playTurn(x, y);
+   }
    else {
       renderGame(game, playTurn);
    }
