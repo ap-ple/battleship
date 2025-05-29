@@ -94,7 +94,7 @@ button {
    background: rgb(255, 60, 60);
 }
 
-.board button.space.miss::after {
+.board .space.miss::after {
    content: "";
    background: white;
 }
