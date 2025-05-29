@@ -40,6 +40,8 @@ const playTurn = (x, y) => {
          y = Math.floor(Math.random() * boardSize);
       } while (game.players.defending.gameboard.wasAttackedAt(x, y));
 
+      // TODO: Try adjacent slots upon hitting a ship
+
       playTurn(x, y);
    }
    else {
