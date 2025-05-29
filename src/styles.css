@@ -75,7 +75,7 @@ button {
 }
 
 .board .space::after {
-   width: 12px;
+   width: 8px;
 }
 
 .board .space.ship::before {
