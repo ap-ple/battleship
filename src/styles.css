@@ -71,6 +71,7 @@ button {
 
 .board .space::before {
    width: 20px;
+   border-radius: 4px;
 }
 
 .board .space::after {
