@@ -26,6 +26,10 @@ const playTurn = (x, y) => {
    game.recieveAttack(x, y)
 
    if (game.isOver()) {
+      if (game.players.attacking.name === COMPUTER) {
+         game.advanceTurns();
+      }
+
       renderGame(game)
    }
    else if (game.players.attacking.name === COMPUTER) {
