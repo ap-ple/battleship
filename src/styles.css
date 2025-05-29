@@ -64,26 +64,37 @@ button {
    aspect-ratio: 1;
 }
 
-.board .space::before {
-   width: 12px;
+.board .space::before,
+.board .space::after {
    aspect-ratio: 1;
    border-radius: 100%;
 }
 
-.board .space.ship {
+.board .space::before {
+   width: 24px;
+}
+
+.board .space::after {
+   width: 12px;
+}
+
+.board .space.ship::before {
+   content: "";
+   position: absolute;
+   z-index: -1;
    background: white;
 }
 
-.board .space.ship.sunk {
-   background: black;
+.board .space.ship.sunk::before {
+   background: darkgray;
 }
 
-.board .space.hit::before {
+.board .space.hit::after {
    content: "";
    background: rgb(255, 60, 60);
 }
 
-.board button.space.miss::before {
+.board button.space.miss::after {
    content: "";
    background: white;
 }
