@@ -16,8 +16,7 @@ export default class Game {
 
       this.players = {
          attacking: null,
-         defending: null,
-         winning: null
+         defending: null
       }
 
       this.updatePlayers();
@@ -31,12 +30,12 @@ export default class Game {
    recieveAttack(x, y) {
       const message = this.players.defending.recieveAttack(x, y);
 
+      if (this.isOver()) {
+         return `${this.playerList.find((player) => !player.hasLost())} wins!`;
+      }
+
       this.turn++;
       this.updatePlayers();
-
-      if (this.isOver()) {
-         this.players.winning = this.playerList.find((player) => !player.hasLost());
-      }
 
       return message;
    }
