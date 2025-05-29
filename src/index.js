@@ -22,4 +22,15 @@ for (const shipName of ships) {
    y++;
 }
 
-renderGame(game)
+const playTurn = (x, y) => {
+   game.recieveAttack(x, y)
+
+   if (game.isOver()) {
+      renderGame(game)
+   }
+   else {
+      renderGame(game, playTurn);
+   }
+}
+
+renderGame(game, playTurn);

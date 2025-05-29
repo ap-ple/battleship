@@ -1,13 +1,13 @@
 const boards = document.querySelector("#boards");
 
-const renderedBoard = (player, callback) => {
+const renderedBoard = (player, attackCallback) => {
    const board = document.createElement("div");
 
    board.className = "board";
 
    const size = player.gameboard.constructor.size;
 
-   const tagName = callback === undefined
+   const tagName = attackCallback === undefined
       ? "div"
       : "button"
    ;
@@ -37,7 +37,7 @@ const renderedBoard = (player, callback) => {
                space.disabled = true;
             }
             else {
-               space.addEventListener("click", () => callback(x, y));
+               space.addEventListener("click", () => attackCallback(x, y));
             }
 
             continue;
@@ -58,7 +58,7 @@ const renderedBoard = (player, callback) => {
    return board;
 }
 
-const renderGame = (game) => {
+const renderGame = (game, attackCallback) => {
    boards.innerHTML = "";
 
    boards.appendChild(renderedBoard(
@@ -66,10 +66,7 @@ const renderGame = (game) => {
    ));
 
    boards.appendChild(renderedBoard(
-      game.players.defending, (x, y) => {
-         game.recieveAttack(x, y);
-         renderGame(game);
-      }
+      game.players.defending, attackCallback
    ));
 }
 
