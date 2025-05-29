@@ -67,15 +67,15 @@ button {
 .board .space::before,
 .board .space::after {
    aspect-ratio: 1;
-   border-radius: 100%;
 }
 
 .board .space::before {
-   width: 24px;
+   width: 20px;
 }
 
 .board .space::after {
-   width: 8px;
+   width: 10px;
+   border-radius: 100%;
 }
 
 .board .space.ship::before {
