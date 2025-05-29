@@ -12,17 +12,19 @@ export default class Game {
          this.playerList.push(new Player(playerName));
       }
 
-      this.turn = 1;
+      this.turn = 0;
 
       this.players = {
          attacking: null,
          defending: null
       }
 
-      this.updatePlayers();
+      this.advanceTurns();
    }
 
-   updatePlayers() {
+   advanceTurns() {
+      this.turn++;
+
       this.players.attacking = this.playerList.at((this.turn - 1) % this.playerList.length);
       this.players.defending = this.playerList.at(this.turn % this.playerList.length);
    }
@@ -34,8 +36,7 @@ export default class Game {
          return `${this.playerList.find((player) => !player.hasLost())} wins!`;
       }
 
-      this.turn++;
-      this.updatePlayers();
+      this.advanceTurns();
 
       return message;
    }
