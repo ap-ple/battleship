@@ -4,7 +4,7 @@ const messageElement = document.querySelector("#message");
 
 const turnElement = document.querySelector("#turn");
 
-const renderedPlayer = (player, callback) => {
+const renderedPlayer = (player, callback, showShips = true) => {
    const playerElement = document.createElement("div");
    
    playerElement.className = "player";
@@ -50,8 +50,10 @@ const renderedPlayer = (player, callback) => {
             else {
                space.addEventListener("click", () => callback(x, y));
             }
+         }
 
-            continue;
+         if (!showShips) {
+            continue
          }
 
          if (player.gameboard.hasShipAt(x, y)) {
@@ -77,7 +79,7 @@ const renderGame = (game, callbacks = {}) => {
    ));
 
    boardsElement.appendChild(renderedPlayer(
-      game.players.defending, callbacks.attack
+      game.players.defending, callbacks.attack, game.isOver()
    ));
 
    turnElement.textContent = game.isOver()
