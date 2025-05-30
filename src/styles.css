@@ -41,6 +41,29 @@ button {
    gap: 36px;
 }
 
+#controls {
+   display: flex;
+   gap: 12px;
+}
+
+#controls button {
+   padding: 6px 12px;
+   border: 2px solid var(--theme-text);
+   border-radius: 24px;
+}
+
+#controls button:not(:disabled):is(:hover, :focus-visible) {
+   opacity: 80%;
+}
+
+#controls button:not(:disabled):active {
+   opacity: 60%;
+}
+
+#controls button:disabled {
+   opacity: 40%;
+}
+
 #boards {
    display: flex;
    flex-flow: row wrap;
