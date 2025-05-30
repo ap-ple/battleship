@@ -16,19 +16,19 @@ const renderedPlayer = (player, callback, showShips = true) => {
 
    board.className = "board";
 
-   const size = player.gameboard.constructor.size;
+   const boardSize = player.gameboard.constructor.size;
 
    const tagName = callback === undefined
       ? "div"
       : "button"
    ;
    
-   for (let x = 0; x < size; x++) {
+   for (let x = 0; x < boardSize; x++) {
       const column = document.createElement("div");
 
       board.appendChild(column);
 
-      for (let y = 0; y < size; y++) {
+      for (let y = 0; y < boardSize; y++) {
          const space = document.createElement(tagName);
 
          column.appendChild(space);
