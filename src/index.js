@@ -72,4 +72,4 @@ renderGame(game, {
    attack: playTurn
 });
 
-renderMessage("...");
+renderMessage("Game start!");
