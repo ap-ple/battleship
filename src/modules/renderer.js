@@ -72,15 +72,18 @@ const renderedPlayer = (player, callback, showShips = true) => {
 }
 
 const renderGame = (game, callbacks = {}) => {
-   boardsElement.innerHTML = "";
+   while (boardsElement.firstChild) {
+      boardsElement.lastChild.remove();
+   }
 
-   boardsElement.appendChild(renderedPlayer(
-      game.players.attacking, callbacks.place
-   ));
-
-   boardsElement.appendChild(renderedPlayer(
-      game.players.defending, callbacks.attack, game.isOver()
-   ));
+   boardsElement.append(
+      renderedPlayer(
+         game.players.attacking, callbacks.place
+      ),
+      renderedPlayer(
+         game.players.defending, callbacks.attack, game.isOver()
+      )
+   );
 
    turnElement.textContent = game.isOver()
       ? `Game over! ${game.players.winning.name} wins!`
