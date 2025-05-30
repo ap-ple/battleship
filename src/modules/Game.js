@@ -33,7 +33,9 @@ export default class Game {
       const message = this.players.defending.recieveAttack(x, y);
 
       if (this.isOver()) {
-         return `${this.playerList.find((player) => !player.hasLost())} wins!`;
+         const winningPlayer = this.playerList.find((player) => !player.hasLost());
+
+         return `${winningPlayer.name} wins!`;
       }
 
       this.advanceTurns();
