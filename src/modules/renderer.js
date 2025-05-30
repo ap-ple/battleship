@@ -4,7 +4,7 @@ const messageElement = document.querySelector("#message");
 
 const turnElement = document.querySelector("#turn");
 
-const renderedPlayer = (player, attackCallback) => {
+const renderedPlayer = (player, callback) => {
    const playerElement = document.createElement("div");
    
    playerElement.className = "player";
@@ -18,7 +18,7 @@ const renderedPlayer = (player, attackCallback) => {
 
    const size = player.gameboard.constructor.size;
 
-   const tagName = attackCallback === undefined
+   const tagName = callback === undefined
       ? "div"
       : "button"
    ;
@@ -48,7 +48,7 @@ const renderedPlayer = (player, attackCallback) => {
                space.disabled = true;
             }
             else {
-               space.addEventListener("click", () => attackCallback(x, y));
+               space.addEventListener("click", () => callback(x, y));
             }
 
             continue;
@@ -69,18 +69,18 @@ const renderedPlayer = (player, attackCallback) => {
    return playerElement;
 }
 
-const renderGame = (game, attackCallback) => {
+const renderGame = (game, callbacks = {}) => {
    boardsElement.innerHTML = "";
 
    boardsElement.appendChild(renderedPlayer(
-      game.players.attacking
+      game.players.attacking, callbacks.place
    ));
 
    boardsElement.appendChild(renderedPlayer(
-      game.players.defending, attackCallback
+      game.players.defending, callbacks.attack
    ));
 
-   turnElement.textContent = attackCallback === undefined
+   turnElement.textContent = game.isOver()
       ? `Game over! ${game.players.winning.name} wins!`
       : `Your turn, ${game.players.attacking.name}.`
    ;

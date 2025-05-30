@@ -50,10 +50,14 @@ const playTurn = (x, y) => {
       playTurn(x, y);
    }
    else {
-      renderGame(game, playTurn);
+      renderGame(game, {
+         attack: playTurn
+      });
    }
 }
 
-renderGame(game, playTurn);
+renderGame(game, {
+   attack: playTurn
+});
 
 renderMessage("...");
