@@ -34,11 +34,25 @@ button {
    cursor: not-allowed;
 }
 
+#game {
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   gap: 36px;
+}
+
 #boards {
    display: flex;
    flex-flow: row wrap;
    justify-content: center;
    gap: 36px;
+}
+
+.player {
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   gap: 12px;
 }
 
 .board {

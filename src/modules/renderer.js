@@ -1,7 +1,18 @@
-const boards = document.querySelector("#boards");
+const boardsElement = document.querySelector("#boards");
 
-const renderedBoard = (player, attackCallback) => {
+const messageElement = document.querySelector("#message");
+
+const turnElement = document.querySelector("#turn");
+
+const renderedPlayer = (player, attackCallback) => {
+   const playerElement = document.createElement("div");
+   
+   playerElement.className = "player";
+   playerElement.textContent = `${player.name}'s board`;
+
    const board = document.createElement("div");
+
+   playerElement.appendChild(board);
 
    board.className = "board";
 
@@ -55,19 +66,28 @@ const renderedBoard = (player, attackCallback) => {
       }
    }
 
-   return board;
+   return playerElement;
 }
 
 const renderGame = (game, attackCallback) => {
-   boards.innerHTML = "";
+   boardsElement.innerHTML = "";
 
-   boards.appendChild(renderedBoard(
+   boardsElement.appendChild(renderedPlayer(
       game.players.attacking
    ));
 
-   boards.appendChild(renderedBoard(
+   boardsElement.appendChild(renderedPlayer(
       game.players.defending, attackCallback
    ));
+
+   turnElement.textContent = attackCallback === undefined
+      ? `Game over! ${game.players.winning.name} wins!`
+      : `Your turn, ${game.players.attacking.name}.`
+   ;
 }
 
-export default renderGame;
+const renderMessage = (message) => {
+   messageElement.textContent = message ?? messageElement.textContent;
+}
+ 
+export {renderGame, renderMessage};

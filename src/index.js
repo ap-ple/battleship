@@ -3,7 +3,7 @@ import "./styles.css"
 import ships from "./modules/ships.js";
 
 import Game from "./modules/Game.js";
-import renderGame from "./modules/renderGame.js";
+import {renderGame, renderMessage} from "./modules/renderer.js";
 
 const PLAYER = "Player";
 const COMPUTER = "Computer";
@@ -23,7 +23,12 @@ for (const shipName of ships) {
 }
 
 const playTurn = (x, y) => {
-   game.recieveAttack(x, y)
+   if (game.players.attacking.name === COMPUTER) {
+      game.recieveAttack(x, y);
+   }
+   else {
+      renderMessage(game.recieveAttack(x, y));
+   }
 
    if (game.isOver()) {
       if (game.players.attacking.name === COMPUTER) {
@@ -50,3 +55,5 @@ const playTurn = (x, y) => {
 }
 
 renderGame(game, playTurn);
+
+renderMessage("...");
